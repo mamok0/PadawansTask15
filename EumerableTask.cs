@@ -18,8 +18,13 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetUppercaseStrings(IEnumerable<string> data)
         {
-            // TODO : Implement GetUppercaseStrings
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+
+            return from str in data
+                   select string.IsNullOrEmpty(str) ? str : str.ToUpper();
         }
 
         /// <summary> Transforms an each string from sequence to its length.</summary>
@@ -34,8 +39,12 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> GetStringsLength(IEnumerable<string> data)
         {
-            // TODO : Implement GetStringsLength
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+            return from str in data
+                   select str == null ? 0 : str.Length;
         }
 
         /// <summary>Transforms integer sequence to its square sequence, f(x) = x * x. </summary>
@@ -50,8 +59,12 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<long> GetSquareSequence(IEnumerable<int> data)
         {
-            // TODO : Implement GetSquareSequence
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+            return from number in data
+                   select Convert.ToInt64(number * number);
         }
 
         /// <summary> Filters a string sequence by a prefix value (case insensitive).</summary>
@@ -71,8 +84,13 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
-            // TODO : Implement GetPrefixItems
-            throw new NotImplementedException();
+            if (data == null || prefix == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+            return from str in data
+                   where str.StartsWith(prefix)
+                   select str;
         }
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
@@ -89,8 +107,11 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<int> Get3LargestItems(IEnumerable<int> data)
         {
-            // TODO : Implement Get3LargestItems
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+            return data.OrderByDescending(i => i).Take(3);
         }
 
         /// <summary> Calculates sum of all integers from object array.</summary>
@@ -106,8 +127,14 @@ namespace PadawansTask15
         /// </example>
         public int GetSumOfAllIntegers(object[] data)
         {
-            // TODO : Implement GetSumOfAllIntegers
-            throw new NotImplementedException();
+            if (data == null)
+                throw new ArgumentNullException();
+            if (data.Count() == 0)
+                throw new ArgumentException();
+            return (from item in data
+                    where item.GetType() == (new int()).GetType()
+                    select (int)item).Sum();
+            
         }
     }
 }
