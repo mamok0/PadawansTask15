@@ -64,7 +64,7 @@ namespace PadawansTask15
             if (data.Count() == 0)
                 return Enumerable.Empty<long>();
             return from number in data
-                   select Convert.ToInt64(number * number);
+                   select ((long)number * (long)number);
         }
 
         /// <summary> Filters a string sequence by a prefix value (case insensitive).</summary>
@@ -139,7 +139,7 @@ namespace PadawansTask15
             if (data.All(num => num == null) || data.Count() == 0)
                 return 0;
             return (from item in data
-                    where item.GetType() == (new int()).GetType() && item!=null
+                    where item is int
                     select (int)item).Sum();
         }
     }

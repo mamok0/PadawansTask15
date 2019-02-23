@@ -83,7 +83,7 @@ namespace PadawansTask15.Tests
                         new int[] { 1, -2, 3, -4, 5, -6, 7, -8, 9, -10 },
                         new long[] { 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 },
                         "Method should return squares of source sequence."
-                    );
+                    ); 
                 }
             }
         }
@@ -172,7 +172,15 @@ namespace PadawansTask15.Tests
                     yield return new TestCaseData(
                         new object[] { true, false }, 0,
                         "Method should return zero if data does not contain integers."
-                    );  
+                    );
+                    yield return new TestCaseData(
+                        new object[] { 10, "ten", 10, null }, 20,
+                        "Method should return zero if data does not contain integers."
+                    );
+                    yield return new TestCaseData(
+                        new object[] { 10, "ten", -10, null }, 0,
+                        "Method should return zero if data does not contain integers."
+                    );
                 }
             }
         }
