@@ -62,7 +62,7 @@ namespace PadawansTask15
             if (data == null)
                 throw new ArgumentNullException();
             if (data.Count() == 0)
-                throw new ArgumentException();
+                return Enumerable.Empty<long>();
             return from number in data
                    select Convert.ToInt64(number * number);
         }
@@ -88,8 +88,14 @@ namespace PadawansTask15
                 throw new ArgumentNullException();
             if (data.Count() == 0)
                 throw new ArgumentException();
+            if (prefix.Length == 0)
+            {
+                return from str in data
+                       where str != null
+                       select str;
+            }    
             return from str in data
-                   where str.StartsWith(prefix)
+                   where str != null && str.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase) 
                    select str;
         }
 
@@ -110,7 +116,7 @@ namespace PadawansTask15
             if (data == null)
                 throw new ArgumentNullException();
             if (data.Count() == 0)
-                throw new ArgumentException();
+                return Enumerable.Empty<int>();
             return data.OrderByDescending(i => i).Take(3);
         }
 
@@ -125,16 +131,16 @@ namespace PadawansTask15
         ///    { 10, "ten", 10 } => 20 
         ///    { } => 0
         /// </example>
+        /// 
         public int GetSumOfAllIntegers(object[] data)
         {
             if (data == null)
                 throw new ArgumentNullException();
-            if (data.Count() == 0)
-                throw new ArgumentException();
+            if (data.All(num => num == null) || data.Count() == 0)
+                return 0;
             return (from item in data
-                    where item.GetType() == (new int()).GetType()
+                    where item.GetType() == (new int()).GetType() && item!=null
                     select (int)item).Sum();
-            
         }
     }
 }

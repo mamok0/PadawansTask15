@@ -172,7 +172,7 @@ namespace PadawansTask15.Tests
                     yield return new TestCaseData(
                         new object[] { true, false }, 0,
                         "Method should return zero if data does not contain integers."
-                    );
+                    );  
                 }
             }
         }
